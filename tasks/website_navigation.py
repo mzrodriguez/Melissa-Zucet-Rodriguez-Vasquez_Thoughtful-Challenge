@@ -145,6 +145,7 @@ class NewsWebsiteAutomation:
                     search_results_table.find_element(By.XPATH, self.config['website']['next_page']).click()
                     count += 1
                 except NoSuchElementException:
+                    print()
                     if count_exception < 4:
                         self.logger.warning(
                             'it was not possible to found a required element, a page reload will be executed')
@@ -161,13 +162,16 @@ class NewsWebsiteAutomation:
                     self.driver._quit_all_drivers()
                     sys.exit()
                 except AssertionError as ae:
+                    print()
                     self.logger.warning(str(ae))
                     self.write_to_excel()
                     self.driver._quit_all_drivers()
-                    sys.exit()
+                    #sys.exit()
                 except ElementNotInteractableException:
                     self.close_advertisement()
                     self.driver.wait_until_element_is_visible(self.config['website']['total_results'], 90)
+                except Exception as ge:
+                    self.logger.warning(ge)
             self.write_to_excel()
 
     def search_news(self):
