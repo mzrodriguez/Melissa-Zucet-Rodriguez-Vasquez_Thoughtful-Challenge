@@ -204,5 +204,5 @@ class NewsWebsiteAutomation:
         try:
             self.driver.driver.quit()
         except Exception:
-            self.logger.info('webdriver already closed')
+            self.logger.warning('webdriver already closed')
 
