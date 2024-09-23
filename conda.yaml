@@ -9,6 +9,4 @@ dependencies:
     - rpaframework==28.6.3
     - pandas==2.2.3
     - selenium==4.15.2
-    - webdriver==4.0.2
-    - get-gecko-driver==0.35.0
-  - get-gecko-driver==0.35.0
+    - webdriver-manager==4.0.2

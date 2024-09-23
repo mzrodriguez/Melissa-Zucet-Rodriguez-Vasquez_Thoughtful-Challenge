@@ -10,15 +10,19 @@ from typing import Match
 from datetime import datetime
 from RPA.Browser.Selenium import Selenium
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.common.by import By
-from get_gecko_driver import GetGeckoDriver
+#from get_gecko_driver import GetGeckoDriver
+from selenium import webdriver
+from webdriver_manager.firefox import GeckoDriverManager
 from selenium.common.exceptions import (ElementNotVisibleException,
                                         NoSuchElementException,
                                         StaleElementReferenceException,
                                         ElementNotInteractableException)
 
-firefox_driver = GetGeckoDriver()
-firefox_driver.install()
+#firefox_driver = GetGeckoDriver()
+#firefox_driver.install()
+firefox_driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()))
 
 
 class NewsWebsiteAutomation:
