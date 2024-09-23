@@ -161,10 +161,10 @@ class NewsWebsiteAutomation:
                     self.driver.driver.quit()
                     sys.exit()
                 except AssertionError as ae:
-                    print()
                     self.logger.warning(str(ae))
                     self.write_to_excel()
                     self.driver.driver.quit()
+                    count = int(total_pages[2].split('\n')[0].replace(',', ''))+1
                     #self.driver._quit_all_drivers()
                     #sys.exit()
                 except ElementNotInteractableException:
@@ -201,4 +201,8 @@ class NewsWebsiteAutomation:
         list(category_selected)[0].find_element(By.TAG_NAME, 'input').click()
         self.driver.wait_until_element_is_visible(self.config['website']['clear_categories_selected'], 90)
         self.get_news_information()
-        self.driver.driver.quit()
+        try:
+            self.driver.driver.quit()
+        except Exception:
+            self.logger.info('webdriver already closed')
+
