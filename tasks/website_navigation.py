@@ -152,20 +152,21 @@ class NewsWebsiteAutomation:
                         self.driver.wait_until_element_is_visible(self.config['website']['total_results'], 90)
                     else:
                         self.write_to_excel()
-                        self.driver._quit_all_drivers()
+                        self.driver.driver.quit()
                         sys.exit()
                     count_exception += 1
                 except StaleElementReferenceException:
                     self.logger.warning('an element is stale at get_news_information function')
                     self.write_to_excel()
-                    self.driver._quit_all_drivers()
+                    self.driver.driver.quit()
                     sys.exit()
                 except AssertionError as ae:
                     print()
                     self.logger.warning(str(ae))
                     self.write_to_excel()
+                    self.driver.driver.quit()
                     #self.driver._quit_all_drivers()
-                    sys.exit()
+                    #sys.exit()
                 except ElementNotInteractableException:
                     self.close_advertisement()
                     self.driver.wait_until_element_is_visible(self.config['website']['total_results'], 90)
@@ -200,4 +201,4 @@ class NewsWebsiteAutomation:
         list(category_selected)[0].find_element(By.TAG_NAME, 'input').click()
         self.driver.wait_until_element_is_visible(self.config['website']['clear_categories_selected'], 90)
         self.get_news_information()
-        self.driver._quit_all_drivers()
+        self.driver.driver.quit()
