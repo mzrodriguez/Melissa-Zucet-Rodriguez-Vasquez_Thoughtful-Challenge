@@ -11,6 +11,7 @@ from datetime import datetime
 from RPA.Browser.Selenium import Selenium
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.service import Service
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 #from get_gecko_driver import GetGeckoDriver
 from selenium import webdriver
@@ -22,6 +23,8 @@ from selenium.common.exceptions import (ElementNotVisibleException,
 
 #firefox_driver = GetGeckoDriver()
 #firefox_driver.install()
+options = Options()
+options.headless = True  # Enable headless mode
 firefox_driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()))
 
 
